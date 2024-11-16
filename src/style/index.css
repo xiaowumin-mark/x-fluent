@@ -1,0 +1,9 @@
+.xf_default {
+    border: none;
+    border-style: solid;
+    border-color: rgb(233, 234, 237);
+    border-width: 0.5px;
+    background-color: rgb(253, 253, 254);
+    border-radius: 7px;
+    border-bottom-color: rgb(208, 209, 211);
+}
