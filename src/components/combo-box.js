@@ -54,7 +54,7 @@ class XFComboBox extends LitElement {
                 box-shadow: 0px 10px 23px 3px rgba(100, 100, 111, 0.2);
                 height: 0px;
                 display: none;
-                transition: height 0.2s top 0.1s;
+                transition: height 0.2s;
                 overflow: hidden;
                 display: none;
                 padding-left:5px;
