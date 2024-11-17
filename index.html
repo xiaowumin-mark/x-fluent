@@ -7,6 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vite + Lit</title>
   <script type="module" src="/src/components/index.js"></script>
+  <style>
+    @font-face {
+      font-family: "Segoe";
+      src:
+        url("/Segoe UI.woff2") format("woff2"),
+    }
+  </style>
 </head>
 
 <body>
@@ -22,11 +29,56 @@
   <xf-button type="primary" disabled>
     primary disabled
   </xf-button>
+  <xf-toggle-button id="xf_t_b">
+    toggle-button
+  </xf-toggle-button>
+  <xf-toggle-button disabled checked>
+    toggle-button disabled
+  </xf-toggle-button>
+  <br>
+  <br><br>
+  <br><br>
+  <br><br>
+  <br><br>
+  <br><br>
+  <br><br>
+  <br>
+  <xf-drop-down-button label="Email">
+    <xf-menu-item>Send</xf-menu-item>
+    <xf-menu-item>Reply</xf-menu-item>
+    <xf-menu-item>Reply All</xf-menu-item>
+  </xf-drop-down-button>
+  <xf-drop-down-button label="菜单禁用" disabled>xf-drop-down-button disabled</xf-drop-down-button>
+  <br>
+  <br>
+  <xf-combo-box value="Arial">
+    <xf-menu-item value="Arial">Arial</xf-menu-item>
+    <xf-menu-item value="Comic Sans MS">Comic Sans MS</xf-menu-item>
+    <xf-menu-item value="Courier New">Courier New</xf-menu-item>
+    <xf-menu-item value="Segoe UI">Segoe UI</xf-menu-item>
+    <xf-menu-item value="Times New Roman">Times New Roman</xf-menu-item>
+  </xf-combo-box>
+  <xf-combo-box>
+    <xf-menu-item value="Arial">Arial</xf-menu-item>
+    <xf-menu-item value="Comic Sans MS">Comic Sans MS</xf-menu-item>
+    <xf-menu-item value="Courier New">Courier New</xf-menu-item>
+    <xf-menu-item value="Segoe UI">Segoe UI</xf-menu-item>
+    <xf-menu-item value="Times New Roman">Times New Roman</xf-menu-item>
+  </xf-combo-box>
+  <br>
+  <br>
+  <xf-radio name="sex">男</xf-radio>
+  <xf-radio name="sex">女</xf-radio>
 
-  <br>
-  <br>
-  <xf-drop-down-button>xf-drop-down-button</xf-drop-down-button>
-  <xf-drop-down-button disabled>xf-drop-down-button disabled</xf-drop-down-button>
+
+  <xf-radio-button name="sex">男</xf-radio>
+  <xf-radio-button name="sex">女</xf-radio>
 </body>
+<script>
+  const xf_t_b = document.getElementById("xf_t_b");
+  xf_t_b.addEventListener("change", (e) => {
+    console.log(e.detail);
+  })
+</script>
 
 </html>

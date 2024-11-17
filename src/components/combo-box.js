@@ -1,10 +1,16 @@
 import { html, css, LitElement } from 'lit';
 import { unselectable, shear } from "../style/index";
 
-class XFDropDownButton extends LitElement {
+class XFComboBox extends LitElement {
+
     static properties = {
         disabled: { type: Boolean },
-        label:{type:String},
+        label: { type: String },
+        value: {
+            type: String,
+            attribute: 'value',
+            reflect: true
+        }
     };
 
     static styles = [
@@ -18,6 +24,7 @@ class XFDropDownButton extends LitElement {
                 align-items: center;
                 justify-content: space-between;
                 background-color: rgb(253, 253, 254);
+                min-width:150px;
             }
             .ddb_main:hover {
                 background-color: rgb(249, 249, 251);
@@ -47,12 +54,14 @@ class XFDropDownButton extends LitElement {
                 box-shadow: 0px 10px 23px 3px rgba(100, 100, 111, 0.2);
                 height: 0px;
                 display: none;
-                transition: height 0.2s ;
+                transition: height 0.2s top 0.1s;
                 overflow: hidden;
                 display: none;
                 padding-left:5px;
                 padding-right:5px;
+                min-width:150px;
                 background-color: white;
+                
 
             }
             #ddb_father{
@@ -69,10 +78,16 @@ class XFDropDownButton extends LitElement {
         `
     ];
 
+
+
+
     constructor() {
         super();
         this.disabled = false;
         this.isOpen = false;
+        this.label = '请选择';
+        this.value = '';
+
     }
 
 
@@ -81,14 +96,14 @@ class XFDropDownButton extends LitElement {
         <div class="mask" @click="${this._maskOnClick}"></div>
         <div id="ddb_father">
             <div class="shear ddb_main unselectable ${this.disabled ? 'disabled' : ''}" @mousedown="${this._btnOnDown}" @mouseup="${this._btnOnUp}">
-                <div><span>${this.label}</span></div>
+                <div><span>${this.value ? this.value : this.label}</span></div>
                 <div class="ddb_right_btn">
                     <svg width="12" height="12" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M36 18L24 30L12 18" stroke="#333" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
             </div>
-            <div class="ddb_ctn shear" @click="${this._ctnonClick}">
+            <div class="ddb_ctn shear" @click="${this._ctnonClick}" id="ddb_ctn">
                 <slot></slot>
             </div>
         </div>
@@ -96,6 +111,28 @@ class XFDropDownButton extends LitElement {
         
         `;
     }
+
+    // 监听value变化，更新子元素的tip属性
+    updated(changedProperties) {
+        console.log(changedProperties);
+        
+        if (changedProperties.has('value')) {
+            const item = this.shadowRoot.querySelector('slot').assignedElements();
+            for (let i = 0; i < item.length; i++) {
+                item[i].removeAttribute('tip');
+                if (item[i].value == this.value) {
+                    item[i].setAttribute('tip', 'true');
+
+                    
+                }
+
+            }
+
+        }
+    }
+
+
+
     _ctnonClick(e) {
         // 点击子元素，关闭弹窗
         console.log(e.target);
@@ -104,6 +141,12 @@ class XFDropDownButton extends LitElement {
             setTimeout(() => {
                 this._close();
             }, 100);
+        }
+
+        if (ctn.children[0].tagName == 'XF-MENU-ITEM') {
+            console.log('ok');
+
+
         }
 
 
@@ -121,6 +164,25 @@ class XFDropDownButton extends LitElement {
             ddbCtn.style.left = `${rect.left}px`;
             ddbCtn.style.top = `${rect.bottom + 5}px`; // 下方弹出
         }
+        const item = this.shadowRoot.querySelector('slot').assignedElements();
+        for (let i = 0; i < item.length; i++) {
+            if (item[i].value == this.value) {
+                item[i].setAttribute('tip', 'true');
+            }
+            item[i].addEventListener('mousedown', () => {
+                item[i].setAttribute('tip', 'true');
+                for (let j = 0; j < item.length; j++) {
+                    if (item[j].getAttribute('tip') == 'true' && j != i) {
+                        item[j].removeAttribute('tip');
+                    }
+                }
+            });
+            item[i].addEventListener('mouseup', (e) => {
+                this.value = item[i].value
+
+            });
+        }
+
     }
 
     _btnOnDown(e) {
@@ -137,6 +199,31 @@ class XFDropDownButton extends LitElement {
                 iterations: 1
             }
         );
+
+
+
+
+    }
+
+    _getPostion(data) {
+        const ddbMain = this.shadowRoot.querySelector('.ddb_main').getBoundingClientRect();
+
+        const items = this.shadowRoot.querySelector('slot').assignedElements();
+        let y = 0
+        for (let i = 0; i < items.length; i++) {
+            y += items[i].offsetHeight;
+            if (items[i].value == data) {
+                console.log(y);
+
+
+
+                return {
+                    x: ddbMain.x,
+                    y: ddbMain.y - y - (i * 5 * 0.6)
+                };
+            }
+        }
+        return null; // 如果没有找到匹配的元素
     }
 
     _btnOnUp(e) {
@@ -161,6 +248,14 @@ class XFDropDownButton extends LitElement {
         else {
             this._close();
         }
+        const zb = this._getPostion(this.value);
+        if (zb) {
+            this.shadowRoot.querySelector('.ddb_ctn').style.left = zb.x + 'px';
+            this.shadowRoot.querySelector('.ddb_ctn').style.top = (zb.y + 20) + 'px'; // 下方弹出
+            console.log(this._getPostion(this.value));
+        }
+
+
     }
 
     _open() {
@@ -182,5 +277,5 @@ class XFDropDownButton extends LitElement {
     }
 }
 
-customElements.define('xf-drop-down-button', XFDropDownButton);
-export { XFDropDownButton };
+customElements.define('xf-combo-box', XFComboBox);
+export { XFComboBox };

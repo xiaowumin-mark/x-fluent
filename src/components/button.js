@@ -1,5 +1,5 @@
 import { html, css, LitElement } from 'lit';
-
+import { shear } from "../style/index"
 class XFButton extends LitElement {
   static properties = {
     type: {
@@ -10,17 +10,7 @@ class XFButton extends LitElement {
     }
   };
 
-  static styles = css`
-    button {
-      border:none;
-	    border-style:solid;
-      border-width:0.5px;
-      border-radius:4px;
-      font-size:12px;
-      padding:4px 10px;
-      font-family:"Segoe";
-      transition:all .1s
-    }
+  static styles = [shear, css`
     .default:hover{
       background-color:rgb(249, 249, 251);
     }
@@ -52,8 +42,8 @@ class XFButton extends LitElement {
     }
 
     .primary:disabled{
-      background-color:rgb(49, 131, 202);
-	    border-color:rgb(49, 131, 202);
+      background-color:#BFBFBF;
+	    border-color:#ffffff;
     }
 
     .default:disabled{
@@ -61,7 +51,7 @@ class XFButton extends LitElement {
 	    background-color:rgb(245, 245, 245);
 	    color:rgb(182, 182, 182);
     }
-  `;
+  `]
   constructor() {
     super();
     // Declare reactive properties
@@ -70,7 +60,7 @@ class XFButton extends LitElement {
   }
 
   render() {
-    return html`<button class="${this.type}" ?disabled="${this.disabled}"><slot></slot></button>`;
+    return html`<button class="shear ${this.type}" ?disabled="${this.disabled}"><slot></slot></button>`;
   }
 }
 
