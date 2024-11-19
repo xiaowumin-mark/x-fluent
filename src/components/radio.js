@@ -41,12 +41,15 @@ class XFRadio extends LitElement {
       justify-content: center;
       align-items: center;
       transition: background-color 0.2s;
+      transform-origin: center;
     }
     input:hover {
       background-color: #E5E5E5;
+      transform-origin: center;
     }
     input:checked {
       background-color: #0067C0;
+      transform-origin: center;
     }
     input:checked::before{
       content: '';
@@ -59,9 +62,12 @@ class XFRadio extends LitElement {
       transition: transform 0.2s;
     }
     input:checked:active::before{
+      transform-origin: center;
       transform: scale(0);
+      
     }
     input:checked:hover::before{
+      transform-origin: center;
       transform: scale(1.2);
     }
     label {
