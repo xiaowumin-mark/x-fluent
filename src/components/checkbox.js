@@ -1,6 +1,6 @@
 import { html, css, LitElement } from 'lit';
 import { shear } from "../style/index"
-class XFRadio extends LitElement {
+class XFChexkbox extends LitElement {
   static properties = {
     type: {
       type: String
@@ -34,7 +34,7 @@ class XFRadio extends LitElement {
       width: 18px;
       height: 18px;
       vertical-align: middle;
-      border-radius: 50%;
+      border-radius: 4px;
       border: 1px solid #8A8A8A;
       appearance: none;
       display:inline-flex;
@@ -45,30 +45,16 @@ class XFRadio extends LitElement {
     }
     input:hover {
       background-color: #E5E5E5;
-      transform-origin: center;
     }
     input:checked {
       background-color: #0067C0;
-      transform-origin: center;
     }
     input:checked::before{
       content: '';
       display: block;
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background-color: #fff;
-      transform-origin: center;
-      transition: transform 0.2s;
-    }
-    input:checked:active::before{
-      transform-origin: center;
-      transform: scale(0);
-      
-    }
-    input:checked:hover::before{
-      transform-origin: center;
-      transform: scale(1.2);
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;charset=utf-8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDQ4IDQ4IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik00MyAxMUwxNi44NzUgMzdMNSAyNS4xODE4IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+') no-repeat center;
     }
     label {
       vertical-align: middle;
@@ -89,8 +75,8 @@ class XFRadio extends LitElement {
   render() {
     return html`
     <div>
-      <input id="xf_radio" type="radio" value="${this.value}" @click=${this._onchange} .checked="${this.checked}">
-      <label for="xf_radio"><slot></slot></label>
+      <input id="xf_checkbox" type="checkbox" value="${this.value}" @click=${this._onchange} .checked="${this.checked}">
+      <label for="xf_checkbox"><slot></slot></label>
     </div>
     `;
   }
@@ -98,7 +84,7 @@ class XFRadio extends LitElement {
     if (this.disabled) return;
 
     this.checked = !this.checked;
-    this.dispatchEvent(new CustomEvent('xf-radio-change', {
+    this.dispatchEvent(new CustomEvent('xf-checkbox-change', {
       detail: this,
       bubbles: true, // 确保事件冒泡
       composed: true // 允许事件穿过 shadow DOM 边界
@@ -107,10 +93,10 @@ class XFRadio extends LitElement {
 
 }
 
-customElements.define('xf-radio', XFRadio);
-export { XFRadio };
+customElements.define('xf-checkbox', XFChexkbox);
+export { XFChexkbox };
 
-class XFRadioGroup extends LitElement {
+class XFCheckboxGroup extends LitElement {
   static properties = {
     name: { type: String },
     selected: { type: String },
@@ -128,24 +114,22 @@ class XFRadioGroup extends LitElement {
 
   render() {
     return html`
-      <div @xf-radio-change="${this._onchange}">
+      <div @xf-checkbox-change="${this._onchange}">
         <slot></slot>
       </div>
     `;
   }
   _onchange(e) {
-    let radio = e.detail;
-    const radios = this.querySelectorAll('xf-radio');
-    for (let i = 0; i < radios.length; i++) {
-      if (radios[i] !== radio) {
-        radios[i].checked = false;
-
-
+    const checkboxs = this.querySelectorAll('xf-checkbox');
+    let res = [];
+    for (let i = 0; i < checkboxs.length; i++) {
+      if (checkboxs[i].checked) {
+        res.push(checkboxs[i]);
       }
     }
 
 
   }
 }
-customElements.define('xf-radio-group', XFRadioGroup);
-export { XFRadioGroup };
+customElements.define('xf-chexkbox-group', XFCheckboxGroup);
+export { XFCheckboxGroup };
