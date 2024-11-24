@@ -17,27 +17,32 @@ class XFComboBox extends LitElement {
         unselectable,
         shear,
         css`
+        xf-combo-box {
+
+            color:var(--xf-text-color)
+          }
             .ddb_main {
                 padding-right: 0px;
                 cursor: default;
                 display: inline-flex;
                 align-items: center;
                 justify-content: space-between;
-                background-color: rgb(253, 253, 254);
+                background-color: var(--xf-default-color);
                 min-width:150px;
             }
             .ddb_main:hover {
-                background-color: rgb(249, 249, 251);
+                background-color: var(--xf-default-hover-color);
+
             }
             .ddb_main:active {
-                background-color: rgb(248, 249, 251);
-                border-color: rgb(233, 234, 237);
-                color: rgb(170, 171, 172);
+                background-color: var(--xf-default-active-color);
+                border-color: var(--xf-border-active-color);
+                color: var(--xf-text-active-color);
             }
             .disabled {
-                border-color: rgb(229, 229, 229);
-                background-color: rgb(245, 245, 245);
-                color: rgb(182, 182, 182);
+                border-color: var(--xf-disabled-border-color);
+                background-color: var(--xf-disabled-color);
+                color: var(--xf-disabled-text-color);
                 pointer-events: none;
             }
             .ddb_right_btn {
@@ -51,7 +56,7 @@ class XFComboBox extends LitElement {
                 height: auto;
                 position: absolute;
                 z-index: 9999;
-                box-shadow: 0px 10px 23px 3px rgba(100, 100, 111, 0.2);
+                box-shadow: 0px 10px 23px 3px rgba(0, 0, 0, 0.1);
                 height: 0px;
                 display: none;
                 transition: height 0.2s;
@@ -60,8 +65,8 @@ class XFComboBox extends LitElement {
                 padding-left:5px;
                 padding-right:5px;
                 min-width:150px;
-                background-color: white;
-                
+                background-color: var(--xf-default-color);
+                color:var(--xf-text-color)
 
             }
             #ddb_father{
@@ -74,6 +79,9 @@ class XFComboBox extends LitElement {
                 width: 100%;
                 height: 100vh;
                 pointer-events: none;
+            }
+            svg{
+                filter:var(--xf-svg-color)
             }
         `
     ];
@@ -115,7 +123,7 @@ class XFComboBox extends LitElement {
     // 监听value变化，更新子元素的tip属性
     updated(changedProperties) {
         console.log(changedProperties);
-        
+
         if (changedProperties.has('value')) {
             const item = this.shadowRoot.querySelector('slot').assignedElements();
             for (let i = 0; i < item.length; i++) {
@@ -123,7 +131,7 @@ class XFComboBox extends LitElement {
                 if (item[i].value == this.value) {
                     item[i].setAttribute('tip', 'true');
 
-                    
+
                 }
 
             }

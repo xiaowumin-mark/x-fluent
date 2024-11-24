@@ -10,6 +10,10 @@ class XFSlider extends LitElement {
     };
 
     static styles = [shear, css`
+        xf-slider {
+
+            color:var(--xf-text-color)
+          }
         .slider {
             width: 100%;
             height: 18px;
@@ -21,7 +25,7 @@ class XFSlider extends LitElement {
             width: 100%;
             height: 4px;
             border-radius: 2px;
-            background: linear-gradient(to right, #0067C0 0%, #868686 0%);
+            background: linear-gradient(to right, var(--xf-primary-color) 0%, #868686 0%);
         }
         .bar-inner {
             position: absolute;
@@ -30,8 +34,8 @@ class XFSlider extends LitElement {
             width: 18px;
             height: 18px;
             border-radius: 50%;
-            background-color: #ffffff;
-            border: 1px solid #d1d1d1;
+            background-color: var(--xf-slider-color);
+            border: 1px solid var(--xf-slider-border-color);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -43,7 +47,7 @@ class XFSlider extends LitElement {
             width: 9px;
             height: 9px;
             border-radius: 50%;
-            background-color: #0067C0;
+            background-color: var(--xf-primary-color);
             transform-origin: center;
             transform: scale(1);
             transition: transform 0.2s ease;
@@ -89,7 +93,7 @@ class XFSlider extends LitElement {
             class="slider"
             @mousedown=${this._startDrag}
         >
-            <div class="bar" style="background: linear-gradient(to right, #0067C0 ${percentage}%, #868686 ${percentage}%);"></div>
+            <div class="bar" style="background: linear-gradient(to right, var(--xf-primary-color) ${percentage}%, #868686 ${percentage}%);"></div>
             <div
                 class="bar-inner"
                 style="left: calc(${percentage}% - 9px);"

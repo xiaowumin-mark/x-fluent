@@ -21,6 +21,10 @@ class XFRadio extends LitElement {
   };
 
   static styles = [shear, css`
+    xf-radio{
+
+      color:var(--xf-text-color)
+    }
     div {
       display: inline-block;
       margin-top: 5px;
@@ -44,11 +48,11 @@ class XFRadio extends LitElement {
       transform-origin: center;
     }
     input:hover {
-      background-color: #E5E5E5;
+      background-color: #00000010;
       transform-origin: center;
     }
     input:checked {
-      background-color: #0067C0;
+      background-color: var(--xf-primary-color);
       transform-origin: center;
     }
     input:checked::before{
@@ -57,7 +61,7 @@ class XFRadio extends LitElement {
       width: 9px;
       height: 9px;
       border-radius: 50%;
-      background-color: #fff;
+      background-color: var(--xf-text-primary-color);
       transform-origin: center;
       transition: transform 0.2s;
     }
@@ -75,6 +79,7 @@ class XFRadio extends LitElement {
       font-size: 13px;
       font-family:"Segoe";
       margin-left:-7px;
+      color:var(--xf-text-color);
     }
   `]
   constructor() {

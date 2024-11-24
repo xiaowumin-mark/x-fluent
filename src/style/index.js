@@ -21,9 +21,9 @@ export const shear = css`
     padding:5px 10px;
     font-family:"Segoe", "微软雅黑", sans-serif;
     transition:all .2s;
-    
-    border-color: rgb(233, 234, 237);
-    border-bottom-color: rgb(208, 209, 211);
+    color:var(--xf-text-color);
+    border-color: var(--xf-border-color);
+    border-bottom-color: var(--xf-border-bottom-color);
 }
 
 `

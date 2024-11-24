@@ -4,33 +4,40 @@ import { unselectable, shear } from "../style/index";
 class XFDropDownButton extends LitElement {
     static properties = {
         disabled: { type: Boolean },
-        label:{type:String},
+        label: { type: String },
     };
 
     static styles = [
         unselectable,
         shear,
         css`
+        xf-drop-down-button {
+
+            color:var(--xf-text-color)
+          }
+          svg{
+            filter:var(--xf-svg-color)
+        }
             .ddb_main {
                 padding-right: 0px;
                 cursor: default;
                 display: inline-flex;
                 align-items: center;
                 justify-content: space-between;
-                background-color: rgb(253, 253, 254);
+                background-color: var(--xf-default-color);
             }
             .ddb_main:hover {
-                background-color: rgb(249, 249, 251);
+                background-color: var(--xf-default-hover-color);
             }
             .ddb_main:active {
-                background-color: rgb(248, 249, 251);
-                border-color: rgb(233, 234, 237);
-                color: rgb(170, 171, 172);
+                background-color: var(--xf-default-active-color);
+                border-color: var(--xf-border-active-color);
+                color: var(--xf-text-active-color);
             }
             .disabled {
-                border-color: rgb(229, 229, 229);
-                background-color: rgb(245, 245, 245);
-                color: rgb(182, 182, 182);
+                border-color: var(--xf-disabled-border-color);
+                background-color: var(--xf-disabled-color);
+                color: var(--xf-disabled-text-color);
                 pointer-events: none;
             }
             .ddb_right_btn {

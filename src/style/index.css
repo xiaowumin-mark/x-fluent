@@ -1,0 +1,70 @@
+:root {
+    --xf-primary-color: #0067C0;
+    /*--xf-primary-color: #0067C0;*/
+    --xf-hover-color: color-mix(in srgb, var(--xf-primary-color) 80%, white 5%);
+    --xf-active-color: color-mix(in srgb, var(--xf-primary-color) 80%, black 5%);
+
+    --xf-text-color: black;
+    --xf-text-hover-color: color-mix(in srgb, var(--xf-text-color) 80%, white 5%);
+    --xf-text-active-color: color-mix(in srgb, var(--xf-text-color) 80%, black 5%);
+    --xf-text-primary-color: white;
+
+    --xf-default-color: #FDFDFE;
+    --xf-default-hover-color: color-mix(in srgb, var(--xf-default-color) 80%, white 5%);
+    --xf-default-active-color: color-mix(in srgb, var(--xf-default-color) 80%, black 5%);
+
+    --xf-border-color: #E5E5E5;
+    --xf-border-bottom-color: #CCCCCC;
+    --xf-border-active-color: color-mix(in srgb, var(--xf-border-color) 80%, white 5%);
+
+    --xf-disabled-color: #F5F5F5;
+    --xf-disabled-border-color: #E5E5E5;
+    --xf-disabled-text-color: #9D9D9D;
+
+    --xf-dialog-content-color: #ffffff;
+    --xf-dialog-footer-color: #F3F3F3;
+
+    --xf-svg-color: invert(0);
+
+    --xf-slider-color: white;
+    --xf-slider-border-color: #d1d1d1;
+
+    --xf-switch-off-color: #5A5A5A;
+    --xf-switch-on-color: #ffffff;
+}
+
+
+[theme="dark"] {
+    --xf-hover-color: color-mix(in srgb, var(--xf-primary-color) 80%, white 5%);
+    --xf-active-color: color-mix(in srgb, var(--xf-primary-color) 80%, black 5%);
+
+    --xf-text-color: white;
+    --xf-text-hover-color: color-mix(in srgb, var(--xf-text-color) 80%, white 5%);
+    --xf-text-active-color: color-mix(in srgb, var(--xf-text-color) 80%, black 10%);
+
+    --xf-default-color: #2D2D2D;
+    --xf-default-hover-color: color-mix(in srgb, var(--xf-default-color) 80%, white 5%);
+    --xf-default-active-color: color-mix(in srgb, var(--xf-default-color) 80%, black 5%);
+    --xf-text-primary-color: black;
+
+    --xf-border-color: #353535;
+    --xf-border-bottom-color: #303030;
+    --xf-border-active-color: color-mix(in srgb, var(--xf-border-color) 80%, black 5%);
+
+    --xf-disabled-color: #2A2A2A;
+    --xf-disabled-border-color: #303030;
+    --xf-disabled-text-color: #676767;
+
+    --xf-dialog-content-color: #2B2B2B;
+    --xf-dialog-footer-color: #202020;
+
+    --xf-svg-color: invert(100);
+
+    --xf-slider-color: #454545;
+    --xf-slider-border-color: #353535;
+
+    --xf-switch-off-color: #CCCCCC;
+    --xf-switch-on-color: #000000;
+}
+
+[theme="light"] {}

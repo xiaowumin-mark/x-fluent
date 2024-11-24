@@ -3,13 +3,17 @@ import { shear, unselectable } from "../style/index"
 class XFMenuItem extends LitElement {
     static properties = {
         tip: { type: Boolean },
-        value:{
+        value: {
             type: String,
             reflect: true,
             attribute: "value"
         }
     };
     static styles = [unselectable, shear, css`
+        xf-menu-item{
+
+            color:var(--xf-text-color)
+          }
     :host{
         --fx-tip-height:50%;
     }
@@ -27,10 +31,10 @@ class XFMenuItem extends LitElement {
 
     }
     .menu-item:hover{
-        background-color:#F1F2F3;
+        background-color:#00000010;
     }
     .menu-item:active{
-        background-color:#F4F5F6;
+        background-color:#00000020;
     }
     .menu-item:active {
         --fx-tip-height:30%;
@@ -47,7 +51,7 @@ class XFMenuItem extends LitElement {
         height:var(--fx-tip-height);
         transform:translateY(-50%);
         border-radius:5px;
-        background-color:#0067C0;
+        background-color:var(--xf-primary-color);
         transition:all 0.2s;
     }
 
@@ -55,7 +59,7 @@ class XFMenuItem extends LitElement {
     constructor() {
         super();
         this.tip = false;
-        
+
 
     }
 

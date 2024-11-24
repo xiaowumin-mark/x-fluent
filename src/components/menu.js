@@ -6,6 +6,10 @@ class XFMenu extends LitElement {
     };
 
     static styles = [shear, css`
+        xf-menu {
+
+            color:var(--xf-text-color)
+          }
         dialog {
             border: none;
             width: 100px;

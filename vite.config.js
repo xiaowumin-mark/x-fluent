@@ -6,6 +6,7 @@ export default defineConfig({
       entry: 'src/components/index.js', // 入口文件
       name: 'x-fluent',
       fileName: (format) => `x-fluent.${format}.js`,
+      formats: ['es', 'umd'], // 打包格式
     },
     rollupOptions: {
       external: ['lit'], // 将 Lit 设置为外部依赖
@@ -14,6 +15,10 @@ export default defineConfig({
           lit: 'lit',
         },
       },
+      minify: 'terser',
     },
+  },
+  server: {
+    port: 8081,
   },
 });

@@ -7,6 +7,9 @@ class XFSwitch extends LitElement {
     };
 
     static styles = [shear, css`
+        xf-switch {
+            color:var(--xf-text-color)
+          }
         :host {
             --scale: 1;
         }
@@ -19,7 +22,7 @@ class XFSwitch extends LitElement {
             position: relative;
             width: 38px;
             height: 18px;
-            background: #EDEDED;
+            background: var(--xf-default-color);
             border: 1px solid #8A8A8A;
             border-radius: 10px;
             transition: border-color .3s, background-color .3s;
@@ -31,7 +34,7 @@ class XFSwitch extends LitElement {
             width: 11px;
             height: 11px;
             border-radius: 50%;
-            background: #5A5A5A;
+            background: var(--xf-switch-off-color);
             top: calc(50% - 5.5px);
             position: absolute;
             left: 3px;
@@ -45,12 +48,15 @@ class XFSwitch extends LitElement {
         }
 
         .switch:checked {
-            background: #0067C0;
+            background: var(--xf-primary-color);
         }
 
         .switch:checked::after {
             left: calc(100% - 14px);
-            background-color: #fff;
+            background-color: var(--xf-switch-on-color);
+        }
+        .switch:active::after{
+            width: 13px;
         }
     `];
 

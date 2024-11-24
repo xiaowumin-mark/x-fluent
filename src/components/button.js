@@ -11,45 +11,44 @@ class XFButton extends LitElement {
   };
 
   static styles = [shear, css`
+    xf-button{
+      color:var(--xf-text-color)
+    }
     .default:hover{
-      background-color:rgb(249, 249, 251);
+      background-color:var(--xf-default-hover-color);
     }
     .default:active{
-      background-color:rgb(248, 249, 251);
-	    border-color:rgb(233, 234, 237);
-	    color:rgb(170, 171, 172);
+      background-color:var(--xf-default-active-color);
+	    border-color:var(--xf-border-active-color);
+	    color:var(--xf-text-active-color);
     }
     .default{
-      background-color:rgb(253, 253, 254);
-      border-color:rgb(233, 234, 237);
-	    background-color:rgb(253, 253, 254);
-	    border-bottom-color:rgb(208, 209, 211);
+      background-color:var(--xf-default-color);
     }
 
     .primary{
-      background-color:rgb(0, 103, 192);
-	    border-color:rgb(20, 115, 197);
-	    border-bottom-color:rgb(0, 62, 115);
-	    color:rgb(255, 255, 255);
+      background-color:var(--xf-primary-color);
+	    border-color:var(--xf-primary-color);
+	    color:var(--xf-text-primary-color);
     }
     .primary:hover{
-      background-color:rgb(25, 117, 197);
+      background-color:var(--xf-hover-color);
     }
     .primary:active{
-      background-color:rgb(49, 131, 202);
-	    border-color:rgb(49, 131, 202);
+      background-color:var(--xf-active-color);
       
     }
 
     .primary:disabled{
       background-color:#BFBFBF;
-	    border-color:#ffffff;
+	    border-color:#e4e4e4;
+      color:#e4e4e4
     }
 
     .default:disabled{
-      border-color:rgb(229, 229, 229);
-	    background-color:rgb(245, 245, 245);
-	    color:rgb(182, 182, 182);
+      border-color:var(--xf-disabled-border-color);
+	    background-color:var(--xf-disabled-color);
+	    color:var(--xf-disabled-text-color);
     }
   `]
   constructor() {

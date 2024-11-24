@@ -21,6 +21,9 @@ class XFChexkbox extends LitElement {
   };
 
   static styles = [shear, css`
+    xf-checkbox {
+      color:var(--xf-text-color)
+    }
     div {
       display: inline-block;
       margin-top: 5px;
@@ -44,10 +47,10 @@ class XFChexkbox extends LitElement {
       transform-origin: center;
     }
     input:hover {
-      background-color: #E5E5E5;
+      background-color: #00000010;
     }
     input:checked {
-      background-color: #0067C0;
+      background-color: var(--xf-primary-color);
     }
     input:checked::before{
       content: '';
@@ -61,6 +64,10 @@ class XFChexkbox extends LitElement {
       font-size: 13px;
       font-family:"Segoe";
       margin-left:-7px;
+      color:var(--xf-text-color);
+    }
+    svg{
+      filter:var(--xf-svg-color)
     }
   `]
   constructor() {

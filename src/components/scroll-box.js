@@ -16,6 +16,7 @@ class XFScrollBox extends LitElement {
     static styles = [shear, css`
         xf-scroll-box{
             display:block;
+            color:var(--xf-text-color)
         }
         :host{
             --xf-scroll-width:2px;
@@ -72,7 +73,7 @@ class XFScrollBox extends LitElement {
                     clearInterval(this._timer);
                 }
                 console.log(target);// null
-                
+
 
                 target.style.setProperty('--xf-scroll-width', scrollWidth + 'px')
             }, 10);
@@ -83,7 +84,7 @@ class XFScrollBox extends LitElement {
             clearInterval(this._timer);
             this._timer = null;
             event.target.style.setProperty('--xf-scroll-width', '2px')
-            
+
         } else {
             event.target.style.setProperty('--xf-scroll-width', '2px')
         }
