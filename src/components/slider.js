@@ -73,14 +73,19 @@ class XFSlider extends LitElement {
             opacity: 0;
             transition: opacity 0.3s ease;
         }
+        
     `];
-
+    updated(changedProperties) {
+        super.updated(changedProperties);
+        this.min = Number(this.min); // 确保 min 是数字
+        this.max = Number(this.max); // 确保 max 是数字
+    }
     constructor() {
         super();
-        this.value = 50; // 默认值
-        this.min = 0;    // 默认最小值
-        this.max = 100;  // 默认最大值
-        this.step = 1;   // 用户步长，默认 1
+        this.min = 0;    // Number
+        this.max = 100;  // Number
+        this.value = 50; // Number
+        this.step = 1;   // Number
         this._isDragging = false; // 内部状态：是否正在拖动
         this._topicH = '0%'; // 默认不显示
     }
@@ -142,14 +147,17 @@ class XFSlider extends LitElement {
     _updatePosition(event) {
         const sliderRect = this.shadowRoot.querySelector('.slider').getBoundingClientRect();
         const offsetX = Math.min(Math.max(event.clientX - sliderRect.left, 0), sliderRect.width);
+
+        // Ensure computations result in a valid number
         const rawValue = (offsetX / sliderRect.width) * (this.max - this.min) + this.min;
+        console.log(typeof rawValue); //string
 
-        // 精确更新内部值
-        this.value = parseFloat(rawValue.toFixed(2));
+        this.value = Number(rawValue.toFixed(2)); // Coerce rawValue to a number and fix precision
 
-        // 强制更新组件显示
+        // Force component update
         this.requestUpdate();
     }
+
 
     _getRoundedValue() {
         // 将内部值按用户设定的步长进行四舍五入
